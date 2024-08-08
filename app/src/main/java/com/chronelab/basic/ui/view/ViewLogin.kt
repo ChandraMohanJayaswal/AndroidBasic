@@ -11,11 +11,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,10 +33,10 @@ import com.chronelab.basic.ui.view.header.HeaderLogin
 import com.chronelab.basic.ui.view.util.ViewAlert
 
 @Composable
-fun ViewLogin(validateUser: ((user: User)-> Boolean)) {
+fun ViewLogin(validateUser: ((user: User)-> Pair<Boolean, String>)) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var isValidUser by remember { mutableStateOf(true) }
+    var userValidationPair by remember { mutableStateOf(Pair(true, "")) }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -80,7 +78,7 @@ fun ViewLogin(validateUser: ((user: User)-> Boolean)) {
                     onClick = {
                         val user = User(id = 0, userName = username, password = password)
                         Log.i("LoginScreen", "Login button pressed!")
-                        isValidUser = validateUser(user)
+                        userValidationPair = validateUser(user)
                     },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = !(username == "" || password == "")
@@ -88,12 +86,13 @@ fun ViewLogin(validateUser: ((user: User)-> Boolean)) {
                     Text(text = stringResource(id = R.string.txt_login))
                 }
 
-                if (!isValidUser) {
+                if (!userValidationPair.first) {
                     ViewAlert(
-                        message = "Please make sure username and password is correct!",
+                        message = userValidationPair.second,
                         dismissButtonText = "OK",
                         dismissButtonAction = {
-                            isValidUser = !isValidUser
+                            userValidationPair =
+                                Pair(!userValidationPair.first, userValidationPair.second)
                         }
                     )
                 }
@@ -108,7 +107,7 @@ fun ViewLogin(validateUser: ((user: User)-> Boolean)) {
 fun ViewLoginPreview() {
     AndroidBasicTheme {
         ViewLogin(validateUser = { user ->
-            true
+            Pair(true, "")
         })
     }
 }

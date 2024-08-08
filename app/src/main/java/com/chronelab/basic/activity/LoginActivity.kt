@@ -34,9 +34,9 @@ class LoginActivity : ComponentActivity() {
         }
     }
 
-    private fun btnLoginAction(user: User): Boolean {
-        val isValid = user.validate()
-        if (isValid) {
+    private fun btnLoginAction(user: User): Pair<Boolean, String> {
+        val pairMessage = user.validate()
+        if (pairMessage.first) {
             val intent = Intent(this, HomeActivity::class.java).apply {
                 putExtra("key_user", user)
             }
@@ -44,6 +44,6 @@ class LoginActivity : ComponentActivity() {
         } else {
             Log.i(TAG, "You are not authorized!")
         }
-        return isValid
+        return pairMessage
     }
 }
