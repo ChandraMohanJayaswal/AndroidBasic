@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Aug5"
+rootProject.name = "AndroidBasic"
 include(":app")

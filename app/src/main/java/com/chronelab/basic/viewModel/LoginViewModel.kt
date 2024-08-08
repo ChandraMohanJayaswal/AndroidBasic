@@ -1,4 +1,4 @@
-package com.chronelab.aug5.viewModel
+package com.chronelab.basic.viewModel
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

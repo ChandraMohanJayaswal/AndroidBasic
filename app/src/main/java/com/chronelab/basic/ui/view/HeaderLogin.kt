@@ -1,4 +1,4 @@
-package com.chronelab.aug5.ui.view
+package com.chronelab.basic.ui.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -6,13 +6,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,13 +16,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.chronelab.aug5.ui.theme.Aug5Theme
+import com.chronelab.basic.ui.theme.AndroidBasicTheme
 
 @Composable
-fun HeaderHome(
+fun HeaderLogin(
     title: String,
-    leftBtnAction: ( () -> Unit),
-    rightBtnAction: ( () -> Unit)
 ) {
     Column(
         modifier = Modifier
@@ -39,12 +32,6 @@ fun HeaderHome(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(onClick = { leftBtnAction() }) {
-                Icon(
-                    imageVector = Icons.Filled.Add,
-                    contentDescription = "Back",
-                    tint = Color.White)
-            }
             Spacer(modifier = Modifier.weight(1f))
             Text(
                 text = title,
@@ -54,25 +41,16 @@ fun HeaderHome(
                 modifier = Modifier.padding(top = 8.dp)
             )
             Spacer(modifier = Modifier.weight(1f))
-            IconButton(onClick = { rightBtnAction() }) {
-                Icon(
-                    imageVector = Icons.Filled.ExitToApp,
-                    contentDescription = "Back",
-                    tint = Color.White)
-            }
-
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun HeaderHomePreview() {
-    Aug5Theme {
-        HeaderHome(
-            title = "Home",
-            leftBtnAction = {},
-            rightBtnAction = {}
+fun HeaderLoginPreview() {
+    AndroidBasicTheme {
+        HeaderLogin(
+            title = "Login"
         )
     }
 }

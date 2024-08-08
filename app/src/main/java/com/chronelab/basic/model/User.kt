@@ -1,4 +1,4 @@
-package com.chronelab.aug5.model
+package com.chronelab.basic.model
 
 import java.io.Serializable
 

@@ -1,4 +1,4 @@
-package com.chronelab.aug5.activity
+package com.chronelab.basic.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.chronelab.aug5.model.User
-import com.chronelab.aug5.ui.theme.Aug5Theme
-import com.chronelab.aug5.ui.view.ViewLogin
+import com.chronelab.basic.model.User
+import com.chronelab.basic.ui.theme.AndroidBasicTheme
+import com.chronelab.basic.ui.view.ViewLogin
 
 class LoginActivity : ComponentActivity() {
     companion object {
@@ -23,7 +23,7 @@ class LoginActivity : ComponentActivity() {
         Log.i("MainActivity", "executing onCreate")
         enableEdgeToEdge()
         setContent {
-            Aug5Theme {
+            AndroidBasicTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     ViewLogin(btnLoginAction = { user ->
                         btnLoginAction(user)

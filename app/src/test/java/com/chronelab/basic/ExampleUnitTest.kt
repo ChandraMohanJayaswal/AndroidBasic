@@ -1,4 +1,4 @@
-package com.chronelab.aug5
+package com.chronelab.basic
 
 import org.junit.Test
 

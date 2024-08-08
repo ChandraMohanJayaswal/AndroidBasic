@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.chronelab.aug5"
+    namespace = "com.chronelab.basic"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.chronelab.aug5"
+        applicationId = "com.chronelab.basic"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

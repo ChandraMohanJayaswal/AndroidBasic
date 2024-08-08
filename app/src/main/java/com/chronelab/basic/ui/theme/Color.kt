@@ -1,4 +1,4 @@
-package com.chronelab.aug5.ui.theme
+package com.chronelab.basic.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

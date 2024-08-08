@@ -1,4 +1,4 @@
-package com.chronelab.aug5.ui.view
+package com.chronelab.basic.ui.view
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
@@ -25,9 +25,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.chronelab.aug5.R
-import com.chronelab.aug5.model.User
-import com.chronelab.aug5.ui.theme.Aug5Theme
+import com.chronelab.basic.R
+import com.chronelab.basic.model.User
+import com.chronelab.basic.ui.theme.AndroidBasicTheme
 
 @Composable
 fun ViewLogin(btnLoginAction: ((user: User)-> Unit)) {
@@ -93,7 +93,7 @@ fun ViewLogin(btnLoginAction: ((user: User)-> Unit)) {
 @Preview(showBackground = true)
 @Composable
 fun ViewLoginPreview() {
-    Aug5Theme {
+    AndroidBasicTheme {
         ViewLogin(btnLoginAction = { user ->
 
         })
