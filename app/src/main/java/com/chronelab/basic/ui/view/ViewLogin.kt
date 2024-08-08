@@ -66,9 +66,7 @@ fun ViewLogin(validateUser: ((user: User)-> Boolean)) {
                     label = { Text(stringResource(id = R.string.txt_username)) },
                     modifier = Modifier.fillMaxWidth()
                 )
-
                 Spacer(modifier = Modifier.height(8.dp))
-
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
@@ -77,14 +75,12 @@ fun ViewLogin(validateUser: ((user: User)-> Boolean)) {
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                     modifier = Modifier.fillMaxWidth()
                 )
-
                 Spacer(modifier = Modifier.height(16.dp))
-
                 Button(
                     onClick = {
                         val user = User(id = 0, userName = username, password = password)
                         Log.i("LoginScreen", "Login button pressed!")
-                        isValidUser = validateUser( user)
+                        isValidUser = validateUser(user)
                     },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = !(username == "" || password == "")

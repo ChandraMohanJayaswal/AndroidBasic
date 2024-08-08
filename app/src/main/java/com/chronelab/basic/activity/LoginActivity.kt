@@ -15,7 +15,7 @@ import com.chronelab.basic.ui.view.ViewLogin
 
 class LoginActivity : ComponentActivity() {
     companion object {
-        private val  TAG = LoginActivity::class.java.simpleName
+        private val TAG = LoginActivity::class.java.simpleName
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class LoginActivity : ComponentActivity() {
         setContent {
             AndroidBasicTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ViewLogin(validateUser = {user ->
+                    ViewLogin(validateUser = { user ->
                         btnLoginAction(user)
                     }
                     )
