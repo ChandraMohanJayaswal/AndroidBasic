@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.chronelab.basic.model.Category
 import com.chronelab.basic.model.CategoryHandler
 import com.chronelab.basic.ui.theme.AndroidBasicTheme
+import com.chronelab.basic.ui.view.header.HeaderHome
 
 
 @Composable

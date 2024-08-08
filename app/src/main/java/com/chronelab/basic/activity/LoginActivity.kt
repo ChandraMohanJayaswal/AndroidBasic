@@ -25,16 +25,18 @@ class LoginActivity : ComponentActivity() {
         setContent {
             AndroidBasicTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ViewLogin(btnLoginAction = { user ->
+                    ViewLogin(validateUser = {user ->
                         btnLoginAction(user)
-                    })
+                    }
+                    )
                 }
             }
         }
     }
 
-    private fun btnLoginAction(user: User) {
-        if (user.validate()) {
+    private fun btnLoginAction(user: User): Boolean {
+        val isValid = user.validate()
+        if (isValid) {
             val intent = Intent(this, HomeActivity::class.java).apply {
                 putExtra("key_user", user)
             }
@@ -42,5 +44,6 @@ class LoginActivity : ComponentActivity() {
         } else {
             Log.i(TAG, "You are not authorized!")
         }
+        return isValid
     }
 }

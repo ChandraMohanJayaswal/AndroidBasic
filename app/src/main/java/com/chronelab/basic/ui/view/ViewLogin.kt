@@ -8,11 +8,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,11 +31,14 @@ import androidx.compose.ui.unit.dp
 import com.chronelab.basic.R
 import com.chronelab.basic.model.User
 import com.chronelab.basic.ui.theme.AndroidBasicTheme
+import com.chronelab.basic.ui.view.header.HeaderLogin
+import com.chronelab.basic.ui.view.util.ViewAlert
 
 @Composable
-fun ViewLogin(btnLoginAction: ((user: User)-> Unit)) {
+fun ViewLogin(validateUser: ((user: User)-> Boolean)) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var isValidUser by remember { mutableStateOf(true) }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -52,6 +58,7 @@ fun ViewLogin(btnLoginAction: ((user: User)-> Unit)) {
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxSize()
+                    .imePadding()
             ) {
                 OutlinedTextField(
                     value = username,
@@ -77,25 +84,35 @@ fun ViewLogin(btnLoginAction: ((user: User)-> Unit)) {
                     onClick = {
                         val user = User(id = 0, userName = username, password = password)
                         Log.i("LoginScreen", "Login button pressed!")
-                        btnLoginAction( user)
+                        isValidUser = validateUser( user)
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    enabled = !(username == "" || password == "")
                 ) {
                     Text(text = stringResource(id = R.string.txt_login))
                 }
+
+                if (!isValidUser) {
+                    ViewAlert(
+                        message = "Please make sure username and password is correct!",
+                        dismissButtonText = "OK",
+                        dismissButtonAction = {
+                            isValidUser = !isValidUser
+                        }
+                    )
+                }
             }
         }
-
-
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
 fun ViewLoginPreview() {
     AndroidBasicTheme {
-        ViewLogin(btnLoginAction = { user ->
-
+        ViewLogin(validateUser = { user ->
+            true
         })
     }
 }
