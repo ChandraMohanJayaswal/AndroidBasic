@@ -7,6 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 import com.chronelab.basic.model.Category
 import com.chronelab.basic.model.CategoryHandler
@@ -27,9 +32,10 @@ class HomeActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent{
             AndroidBasicTheme {
+                var categories by remember { mutableStateOf(CategoryHandler.catgories.toMutableStateList()) }
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ViewHome(categories = CategoryHandler.catgories, leftBtnAction = {
-                        btnAddAction()
+                    ViewHome(categories = categories, leftBtnAction = {
+                        btnAddAction(categories)
                     }, rightBtnAction = {
                         btnLogoutAction()
                     })
@@ -38,7 +44,8 @@ class HomeActivity : ComponentActivity() {
         }
     }
 
-    private fun btnAddAction() {
+    private fun btnAddAction(categories: MutableList<Category>) {
+        categories.add(Category(3, "Grains"))
         CategoryHandler.addCategory(Category(3, "Grains"))
     }
 

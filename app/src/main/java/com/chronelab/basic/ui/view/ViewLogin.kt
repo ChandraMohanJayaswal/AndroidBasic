@@ -101,7 +101,6 @@ fun ViewLogin(validateUser: ((user: User)-> Pair<Boolean, String>)) {
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun ViewLoginPreview() {
