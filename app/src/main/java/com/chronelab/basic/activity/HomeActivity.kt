@@ -32,10 +32,11 @@ class HomeActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent{
             AndroidBasicTheme {
-                var categories by remember { mutableStateOf(CategoryHandler.catgories.toMutableStateList()) }
+                var categories by remember { mutableStateOf(CategoryHandler.catgories.toList()) }
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     ViewHome(categories = categories, leftBtnAction = {
-                        btnAddAction(categories)
+                        btnAddAction()
+                        categories = CategoryHandler.catgories.toList()
                     }, rightBtnAction = {
                         btnLogoutAction()
                     })
@@ -44,8 +45,7 @@ class HomeActivity : ComponentActivity() {
         }
     }
 
-    private fun btnAddAction(categories: MutableList<Category>) {
-        categories.add(Category(3, "Grains"))
+    private fun btnAddAction() {
         CategoryHandler.addCategory(Category(3, "Grains"))
     }
 
